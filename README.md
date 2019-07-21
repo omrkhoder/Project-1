@@ -4,9 +4,9 @@
 2. Download [Virtual Box](https://www.virtualbox.org/) and install. 
 3. Clone this repository to a directory of your choice.
 4. Download the **newsdata.sql** (extract from  [newsdata.zip](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip) and **logs_analysis.py** files from the respository and move them to your **vagrant** directory within your VM.
+To build the reporting tool, you'll need to load the site's data into your local database. 
 
-
-Run these commands from the terminal in the folder where your vagrant is installed in:
+ Run these commands from the terminal in the folder where your vagrant is installed in:
 
 1-```vagrant up``` to start up the VM.
 
