@@ -3,7 +3,7 @@
 1. Download [Vagrant](https://www.vagrantup.com/) and install.
 2. Download [Virtual Box](https://www.virtualbox.org/) and install. 
 3. Clone this repository to a directory of your choice.
-4. Download the **newsdata.sql** (extract from **newsdata.zip** (not provided here though)) and **newsdata.py** files from the respository and move them to your **vagrant** directory within your VM.
+4. Download the **newsdata.sql** (extract from **newsdata.zip** (https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip) and **logs_analysis.py** files from the respository and move them to your **vagrant** directory within your VM.
 
 
 Run these commands from the terminal in the folder where your vagrant is installed in:
@@ -16,7 +16,7 @@ Run these commands from the terminal in the folder where your vagrant is install
 
 4-```psql -d news -f newsdata.sql``` to load the data and create the tables.
 
-5-```python3 newsdata.py ```to run the reporting tool.
+5-```python3 logs_analysis.py ```to run the reporting tool.
 
 ## The questions the reporting tool should answer:
 1. What are the most popular three articles of all time?
