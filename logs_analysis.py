@@ -46,9 +46,9 @@ def top_authors():
 
 # 3-Print the days in which there were more than 1% of requests lead to errors:
 def error_percentage():
-    results = connect("""select errorlogs.date, round(100.0*errorcount/logcount,2) as percent
-            from logs, errorlogs
-            where logs.date = errorlogs.date
+    results = connect("""select date, round(100.0*errorcount/logcount,2) as percent
+            from stat
+            where logs.date = date
             and errorcount > logcount/100;""")
     print('\n The days when more than 1% of requests lead to errors:\n')
     for i in results:
