@@ -60,6 +60,3 @@ if __name__ == '__main__':    # Print results
     top_three_articles()
     top_authors()
     error_percentage()
-
-
-
