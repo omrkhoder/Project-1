@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# Import postgresql library
 import psycopg2
 
 
@@ -13,7 +15,6 @@ def connect(query):
     return results
 
 # 1- Print the top three articles of all time:
-
 def top_three_articles():
     results = connect("""select articles.title, count(*) as views 
             from log, articles
@@ -30,10 +31,11 @@ def top_three_articles():
 
 # 2- Print the most popular article authors of all time:
 def top_authors():
-    results = connect("""select authors.name, sum(article_views.views) as views
-            from article_authors, article_views,log
+    results = connect("""select authors.name, count(*) as views
+            from articles, authors, log
             where log.status='200 OK'
-            and article_authors.title = article_views.title
+            and authors.id = articles.author
+	    and articles.slug = substr(log.path, 10)
             group by authors.name
             order by views desc;""")
     print('\n Displaying the most popular article authors of all time:\n')
@@ -42,7 +44,7 @@ def top_authors():
         print(" ")
 
 
-# 3-Print the days in which there were more than 1% of requests lead to errors
+# 3-Print the days in which there were more than 1% of requests lead to errors:
 def error_percentage():
     results = connect("""select errorlogs.date, round(100.0*errorcount/logcount,2) as percent
             from logs, errorlogs
@@ -60,8 +62,8 @@ def error_percentage():
 if __name__ == '__main__':
 	# Print results
     top_three_articles()
-    top_three_authors()
-    high_error_days()
+    top_authors()
+    error_percentage()
 
 
 
