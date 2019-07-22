@@ -4,7 +4,7 @@ import psycopg2
 
 
 def connect(query):
-	# Connect to database
+    # Connect to database
     conn = psycopg2.connect(database="news")
     cursor = conn.cursor()
     # Execute queries
@@ -15,10 +15,12 @@ def connect(query):
     return results
 
 # 1- Print the top three articles of all time:
+
+
 def top_three_articles():
-    results = connect("""select articles.title, count(*) as views 
+    results = connect("""select articles.title, count(*) as views
             from log, articles
-            where log.status='200 OK' 
+            where log.status='200 OK'
             and articles.slug = substr(log.path, 10)
             group by articles.title
             order by views desc
@@ -34,8 +36,8 @@ def top_authors():
     results = connect("""select authors.name, count(*) as views
             from articles, authors, log
             where log.status='200 OK'
-            and authors.id = articles.author
-	    and articles.slug = substr(log.path, 10)
+            and authors.id = articles.author and
+            articles.slug = substr( log.path, 10 )
             group by authors.name
             order by views desc;""")
     print('\n Displaying the most popular article authors of all time:\n')
@@ -54,17 +56,10 @@ def error_percentage():
     for i in results:
         print('\t' + str(i[0]) + ' - ' + str(i[1]) + ' %' + ' errors')
         print(" ")
- 
-
-
-
-
-if __name__ == '__main__':
-	# Print results
+if __name__ == '__main__':    # Print results
     top_three_articles()
     top_authors()
     error_percentage()
-
 
 
 
